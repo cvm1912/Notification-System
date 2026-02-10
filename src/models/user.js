@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
       enum: ["USER", "PROVIDER", "ADMIN"],
       default: "USER",
     },
-
+    
 
     notificationSettings: {
       pushEnabled: {
