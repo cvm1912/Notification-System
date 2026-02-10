@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "Notification using Pusher Beams for sending push notifications",
   "main": "src/server.js",
- "scripts": {
-  "start": "node src/server.js",
-  "dev": "nodemon src/server.js",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
-
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cvm1912/Notification-System.git"
@@ -22,6 +21,8 @@
   },
   "homepage": "https://github.com/cvm1912/Notification-System#readme",
   "dependencies": {
+    "@pusher/push-notifications-server": "^1.2.7",
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
     "mongoose": "^9.1.6"

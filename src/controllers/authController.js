@@ -42,7 +42,7 @@ const registerUser = async (req, res) => {
       },
     });
   } catch (err) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -89,22 +89,22 @@ const loginUser = async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Login successful",
-      token,
       user: {
         id: user._id,
         name: user.name,
         email: user.email,
         role: user.role,
       },
+      token,
     });
   } catch (err) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
 const updateProfile = async (req, res) => {
   try {
-    const userId = req.params;
+    const userId = req.params.id;
     const { name, notificationSettings } = req.body;
 
     const forbiddenField = ["password", "email", "role", "isActive"];
@@ -124,10 +124,20 @@ const updateProfile = async (req, res) => {
 
     return res.status(200).json({
       message: "Profile updated successfully",
-      user,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        notificationSettings: user.notificationSettings,
+        deviceTokens: user.deviceTokens,
+        isActive: user.isActive,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
     });
   } catch (err) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -160,7 +170,7 @@ const removeDeviceToken = async (req, res) => {
     message: "Device token removed successfully",
   })
   } catch (err) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
@@ -175,7 +185,7 @@ const deactiveUser = async(req,res) =>{
       })
    }catch(err)
    {
-     res.status(500).json({ message: error.message });
+     res.status(500).json({ message: err.message });
    }
 }
 
