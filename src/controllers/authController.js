@@ -164,4 +164,19 @@ const removeDeviceToken = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, updateProfile, addDeviceToken, removeDeviceToken};
+
+const deactiveUser = async(req,res) =>{
+   try{
+      const userId = req.params.id;
+      await User.findByIdAndUpdate(userId, {isActive:false})
+
+      return res.status(200).json({
+        message: "User Deactivated successfully",
+      })
+   }catch(err)
+   {
+     res.status(500).json({ message: error.message });
+   }
+}
+
+export { registerUser, loginUser, updateProfile, addDeviceToken, removeDeviceToken, deactiveUser};
